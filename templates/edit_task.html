@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Edit Alarm | Task Alarm{% endblock %}
+
+{% block content %}
+<div class="form-wrapper">
+    <div class="form-heading">
+        <p class="eyebrow">UPDATE REMINDER</p>
+        <h1>Edit Alarm</h1>
+        <p>Change the task or scheduled time.</p>
+    </div>
+
+    {% if error %}
+    <div class="error">{{ error }}</div>
+    {% endif %}
+
+    <form method="post" class="task-form">
+        <label>
+            Task title
+            <input type="text" name="title" value="{{ task.title }}" required>
+        </label>
+
+        <label>
+            Description
+            <textarea name="description">{{ task.description }}</textarea>
+        </label>
+
+        <div class="form-row">
+            <label>
+                Date
+                <input type="date" name="alarm_date" value="{{ task.alarm_date }}" required>
+            </label>
+
+            <label>
+                Time
+                <input type="time" name="alarm_time" value="{{ task.alarm_time }}" required>
+            </label>
+        </div>
+
+        <label>
+            Repeat
+            <select name="repeat">
+                <option value="once" {% if task.repeat == 'once' %}selected{% endif %}>Once</option>
+                <option value="daily" {% if task.repeat == 'daily' %}selected{% endif %}>Daily</option>
+                <option value="weekdays" {% if task.repeat == 'weekdays' %}selected{% endif %}>Weekdays</option>
+            </select>
+        </label>
+
+        <div class="form-actions">
+            <a class="button secondary" href="{{ url_for('index') }}">Cancel</a>
+            <button class="button primary" type="submit">Save Changes</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

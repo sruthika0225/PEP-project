@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Task Alarm{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <nav class="navbar">
+      <a class="brand" href="{{ url_for('index') }}">🔔 Task Alarm</a>
+      <a class="nav-button" href="{{ url_for('add_task') }}">+ Add Alarm</a>
+    </nav>
+
+    <main class="page">{% block content %}{% endblock %}</main>
+
+    <div id="alarmOverlay" class="alarm-overlay hidden" aria-hidden="true">
+      <div class="alarm-card">
+        <div class="alarm-icon">🔔</div>
+        <p class="alarm-label">ALARM</p>
+        <h2 id="ringingTitle">Reminder</h2>
+        <p id="ringingDescription"></p>
+        <div id="ringingTime" class="ringing-time"></div>
+
+        <div class="alarm-actions">
+          <button id="snoozeButton" class="button secondary">
+            😴 Snooze 5 min
+          </button>
+          <button id="dismissButton" class="button danger">✕ Dismiss</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/alarm.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
+</html>

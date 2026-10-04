@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Task Details | Task Alarm{% endblock %}
+{% block content %}
+<div class="form-wrapper">
+    <p class="eyebrow">TASK</p>
+    <h1>{{ task.title }}</h1>
+    <p>{{ task.description }}</p>
+    <p>📅 {{ task.alarm_date }} &nbsp; ⏰ {{ task.alarm_time }}</p>
+    <a class="button primary" href="{{ url_for('index') }}">Back</a>
+</div>
+{% endblock %}

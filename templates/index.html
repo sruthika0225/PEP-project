@@ -1,0 +1,118 @@
+{% extends "base.html" %} {% block title %}Dashboard | Task Alarm{% endblock %}
+{% block content %}
+<section class="hero">
+  <div>
+    <p class="eyebrow">PERSONAL REMINDER</p>
+    <h1>Stay on time.<br /><span>Never miss a task.</span></h1>
+    <p class="hero-text">
+      Schedule an alarm and let your browser remind you when it is time.
+    </p>
+  </div>
+  <a class="button primary large" href="{{ url_for('add_task') }}"
+    >+ Create Alarm</a
+  >
+</section>
+
+<section class="stats-grid">
+  <div class="stat-card">
+    <span>Total</span>
+    <strong>{{ stats.total }}</strong>
+  </div>
+  <div class="stat-card">
+    <span>Pending</span>
+    <strong>{{ stats.pending }}</strong>
+  </div>
+  <div class="stat-card">
+    <span>Completed</span>
+    <strong>{{ stats.completed }}</strong>
+  </div>
+  <div class="stat-card">
+    <span>Overdue</span>
+    <strong>{{ stats.overdue }}</strong>
+  </div>
+</section>
+
+<section class="section-header">
+  <div>
+    <p class="eyebrow">YOUR SCHEDULE</p>
+    <h2>Alarms</h2>
+  </div>
+</section>
+
+{% if tasks %}
+<div class="task-list">
+  {% for task in tasks %}
+  <article
+    class="task-card {% if task.status == 'completed' %}completed{% endif %}"
+  >
+    <div class="task-main">
+      <div class="task-bell">
+        {% if task.status == 'completed' %}✓{% else %}🔔{% endif %}
+      </div>
+      <div>
+        <h3>{{ task.title }}</h3>
+        {% if task.description %}
+        <p>{{ task.description }}</p>
+        {% endif %}
+        <div class="task-meta">
+          <span>📅 {{ task.alarm_date }}</span>
+          <span>
+            ⏰
+            <span class="time-12" data-time="{{ task.alarm_time }}">
+              {{ task.alarm_time }}
+            </span>
+          </span>
+          <span>🔁 {{ task.repeat|capitalize }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="task-actions">
+      {% if task.status != 'completed' %}
+
+      <form
+        method="post"
+        action="{{ url_for('complete_task', task_id=task.id) }}"
+      >
+        <button class="icon-button" title="Complete">✓</button>
+      </form>
+
+      {% else %}
+
+      <a
+        class="icon-button reuse-button"
+        href="{{ url_for('reuse_task', task_id=task.id) }}"
+        title="Reuse alarm"
+      >
+        ↻
+      </a>
+
+      {% endif %}
+
+      <a
+        class="icon-button"
+        href="{{ url_for('edit_task', task_id=task.id) }}"
+        title="Edit"
+      >
+        ✎
+      </a>
+      >
+      <form
+        method="post"
+        action="{{ url_for('delete_task', task_id=task.id) }}"
+        onsubmit="return confirm('Delete this alarm?');"
+      >
+        <button class="icon-button delete" title="Delete">🗑</button>
+      </form>
+    </div>
+  </article>
+  {% endfor %}
+</div>
+{% else %}
+<div class="empty-state">
+  <div>⏰</div>
+  <h3>No alarms yet</h3>
+  <p>Create your first reminder to get started.</p>
+  <a class="button primary" href="{{ url_for('add_task') }}">Create Alarm</a>
+</div>
+{% endif %} {% endblock %}

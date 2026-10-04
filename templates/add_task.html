@@ -1,0 +1,60 @@
+{% extends "base.html" %} {% block title %}Add Alarm | Task Alarm{% endblock %}
+{% block content %}
+<div class="form-wrapper">
+  <div class="form-heading">
+    <p class="eyebrow">NEW REMINDER</p>
+    <h1>Create an Alarm</h1>
+    <p>Set a task and the exact time you want to be reminded.</p>
+  </div>
+
+  {% if error %}
+  <div class="error">{{ error }}</div>
+  {% endif %}
+
+  <form method="post" class="task-form">
+    <label>
+      Task title
+      <input
+        type="text"
+        name="title"
+        placeholder="e.g. Study Python"
+        required
+      />
+    </label>
+
+    <label>
+      Description
+      <textarea
+        name="description"
+        placeholder="What do you need to remember?"
+      ></textarea>
+    </label>
+
+    <div class="form-row">
+      <label>
+        Date
+        <input type="date" name="alarm_date" id="alarmDate" required />
+      </label>
+
+      <label>
+        Time
+        <input type="time" name="alarm_time" required />
+      </label>
+    </div>
+
+    <label>
+      Repeat
+      <select name="repeat">
+        <option value="once">Once</option>
+        <option value="daily">Daily</option>
+        <option value="weekdays">Weekdays</option>
+      </select>
+    </label>
+
+    <div class="form-actions">
+      <a class="button secondary" href="{{ url_for('index') }}">Cancel</a>
+      <button class="button primary" type="submit">Save Alarm</button>
+    </div>
+  </form>
+</div>
+{% endblock %}
