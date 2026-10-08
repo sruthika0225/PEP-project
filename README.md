@@ -1,11 +1,13 @@
-# 🔔 Task Alarm & Reminder
+# 🔔 Task Alarm & Reminder — PEP DevOps Project
 
 A Flask-based task reminder application with scheduled alarms, snooze, dismiss, repeating reminders and SQLite storage.
 
-## Features
+This project is also configured for **DevOps automation using Docker, Terraform, Jenkins, AWS EC2 and GitHub Container Registry (GHCR).**
+
+## 🚀 Features
 
 - Create, edit and delete reminders
-- Schedule an alarm using date and time
+- Schedule alarms using date and time
 - Once, daily and weekday repeating reminders
 - Alarm screen with sound
 - Snooze for 5 minutes
@@ -13,25 +15,45 @@ A Flask-based task reminder application with scheduled alarms, snooze, dismiss, 
 - Complete tasks
 - SQLite database
 - Automated tests
+- Docker containerization
+- AWS infrastructure provisioning using Terraform
+- Jenkins-based CI/CD automation
+- Docker image publishing to GHCR
 
-## Run locally
+## 🛠️ Technologies Used
 
-```bash
-python -m venv venv
-```
+- **Frontend:** HTML, CSS, JavaScript
+- **Backend:** Python, Flask
+- **Database:** SQLite
+- **Containerization:** Docker
+- **Infrastructure as Code:** Terraform
+- **CI/CD:** Jenkins
+- **Cloud:** AWS EC2
+- **Container Registry:** GitHub Container Registry (GHCR)
+- **Version Control:** Git & GitHub
 
-Windows PowerShell:
+## 📁 Project Structure
 
-```powershell
-.\venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-python app.py
-```
-
-Open:
-
-`http://127.0.0.1:5000`
-
-## Important
-
-The first version uses browser-side alarm behavior. The web page must remain open for the browser to play the alarm sound reliably.
+```text
+PEP-project/
+│
+├── database/
+├── models/
+├── routes/
+├── services/
+├── static/
+├── templates/
+├── tests/
+│
+├── app.py
+├── config.py
+├── requirements.txt
+├── Dockerfile
+│
+└── terraform/
+    ├── provider.tf
+    ├── vpc.tf
+    ├── ec2.tf
+    ├── variables.tf
+    ├── output.tf
+    └── user_data.yaml
