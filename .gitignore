@@ -5,3 +5,11 @@ __pycache__/
 .pytest_cache/
 database/tasks.db
 .env
+
+# AWS private keys
+*.pem
+
+# Terraform downloaded files and local state
+**/.terraform/*
+*.tfstate
+*.tfstate.*

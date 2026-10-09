@@ -8,7 +8,8 @@ resource "aws_instance" "ec2" {
   vpc_security_group_ids = [aws_security_group.sg.id]
   associate_public_ip_address = true
 
-  user_data = file("${path.module}/user_data.yaml")
+  user_data = file("${path.module}/user_data.yaml") 
+  user_data_replace_on_change = true
 
   tags = {
     Name = "sjce-devops"
